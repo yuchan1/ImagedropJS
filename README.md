@@ -49,11 +49,8 @@ Write 3 row code only.
         imagedrop.setImage(filePath);
     </script>
     
-### Server side
-Controller :  
-Controller argument. { object file, long testId }  
-For ASP.NET MVC5. { HttpPostedFileBase file, long testId }  
+### Server side(Controller)
+Controller argument: { object file, long testId }  
+※For ASP.NET MVC5: { HttpPostedFileBase file, long testId }  
                
-Return Json result. new { filePath = "/Content/images/1/FileUploads/test.jpg" }
-
-             ASP.NET MVC
+Return Json result: new { filePath = "/Content/images/1/FileUploads/test.jpg" }
