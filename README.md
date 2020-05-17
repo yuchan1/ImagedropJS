@@ -24,7 +24,7 @@ Set html項のフォームを設置すると下記のテンプレートを自動
         "</div>\n";
 
 Description(English) :  
-Image file 'drag and drop' or 'double click select' upload. Write native javascript(ECMAScript 5th edition).No jquery.  
+Image file "drag and drop" or "double click select" upload. Write native javascript(ECMAScript 5th edition).No jquery.  
   
 Support browser : Internet Explorer 11, Google Chrome.  
   
