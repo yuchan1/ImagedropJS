@@ -43,7 +43,7 @@ Support browser : Internet Explorer 11, Google Chrome.
     }
 
 ### Set javascript
-Minimal code.   
+Minimal code.  
     <script>
         var imagedrop = new Imagedrop();
         var filePath = "/Content/images/1/FileUploads/test.jpg"
