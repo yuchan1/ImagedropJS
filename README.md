@@ -41,8 +41,8 @@ Support browser : Internet Explorer 11, Google Chrome.
     }
 
 ### Set javascript
-Write 3 row only.
-
+Write 3 row code only.  
+  
     <script>
         var imagedrop = new Imagedrop();
         var filePath = "/Content/images/1/FileUploads/test.jpg"
@@ -50,5 +50,11 @@ Write 3 row only.
     </script>
     
 ### Server side
-Controller : Html post form data. { object[] files, long testId}  
-Return : Json result required. { filePath = "/Content/images/1/FileUploads/test.jpg" }
+
+Controller :  
+Controller argument. { object file, long testId } 
+For ASP.NET MVC5. { HttpPostedFileBase file, long testId }  
+               
+Return Json result. new { filePath = "/Content/images/1/FileUploads/test.jpg" }
+
+             ASP.NET MVC
