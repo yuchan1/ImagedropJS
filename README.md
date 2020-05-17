@@ -7,7 +7,7 @@ Licensed under the MIT license.
 Description(日本語) :  
 画像ファイルを「ドラッグアンドドロップ」または「ダブルクリックしてファイル選択」して、アップロードします。  
 Native javascript(ECMAScript 5th edition)で書いてます。jqueryは使用していません。  
-既存のドラッグアンドドロップをアップロードするjavascriptライブラリが使いにくかったので作成しました。 
+既存のドラッグアンドドロップをアップロードするjavascriptライブラリが使いにくかったので作成しました。  
 動きとしてはシンプルに作成しています。  
   
 Set html項のフォームを設置すると下記のテンプレートを自動生成します。  
