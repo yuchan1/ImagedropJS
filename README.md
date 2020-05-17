@@ -52,6 +52,8 @@ The minimum code is as follows.
     </script>
     
 ### Server side(Controller)
+The following settings are required on the server again.
+  
 Controller argument: { object file, long testId }  
 ※For ASP.NET MVC5: { HttpPostedFileBase file, long testId }  
                
