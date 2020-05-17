@@ -50,9 +50,8 @@ Write 3 row code only.
     </script>
     
 ### Server side
-
 Controller :  
-Controller argument. { object file, long testId } 
+Controller argument. { object file, long testId }  
 For ASP.NET MVC5. { HttpPostedFileBase file, long testId }  
                
 Return Json result. new { filePath = "/Content/images/1/FileUploads/test.jpg" }
