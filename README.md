@@ -1,15 +1,15 @@
-# ImagedropJS
-Imagedrop.js  v1.0.0 (2020-04-27)
-Copyright 2020 yuchan.
-Licensed under the MIT license.
-
-Description(日本語) : 画像ファイルを「ドラッグアンドドロップ」または「ダブルクリックしてファイル選択」して、アップロードします。
-                     Native javascript(ECMAScript 5th edition)で書いてます。jqueryは使用していません。
-
-Description(English) : Image file 'drag and drop' or 'double click select' upload. Write native javascript(ECMAScript 5th edition).No jquery. 
-
-Support browser : Internet Explorer 11, Google Chrome.
-
+# ImagedropJS  
+Imagedrop.js  v1.0.0 (2020-04-27)  
+Copyright 2020 yuchan.  
+Licensed under the MIT license.  
+  
+Description(日本語) : 画像ファイルを「ドラッグアンドドロップ」または「ダブルクリックしてファイル選択」して、アップロードします。  
+                     Native javascript(ECMAScript 5th edition)で書いてます。jqueryは使用していません。  
+  
+Description(English) : Image file 'drag and drop' or 'double click select' upload. Write native javascript(ECMAScript 5th edition).No jquery.   
+  
+Support browser : Internet Explorer 11, Google Chrome.  
+  
 ## Set html(Normal)
 ''' html:index.html
 <form action="/(Name)/Upload", class="imagedrop", id="imagedrop", enctype="multipart/form-data" />
