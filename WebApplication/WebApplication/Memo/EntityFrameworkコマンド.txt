@@ -1,0 +1,9 @@
+﻿// EntityFrameworコマンド
+
+PM> Enable-Migrations または Enable-Migrations -Force
+
+PM> Add-Migration Initial
+
+PM> Update-Database
+
+-Force

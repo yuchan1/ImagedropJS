@@ -1,0 +1,17 @@
+﻿/*
+ * Imagedrop.js  v1.0.0 (2020-04-27)
+ * Copyright 2020 yuchani.
+ * Licensed under the MIT license.
+ */
+
+.drag-and-drop-area {
+    width: 100%;
+    height: 630px;
+    border: 1px solid #aaaaaa;
+    overflow: scroll;
+}
+
+.default-message {
+    padding-top: 10px;
+    text-align: center;
+}

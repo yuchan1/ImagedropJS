@@ -1,0 +1,70 @@
+﻿@using WebApplication.Helpers
+@model WebApplication.Models.Member
+
+@{
+    ViewBag.Title = "Member";
+}
+
+<!-- main -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li><a href="/">HOME</a></li>
+        <li>@ViewBag.Title</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="form-inline col-md-12">
+        <div class="col-md-2">
+            @Html.RadioButton("enable", 1, new { @id = "enable" })<label>表示のみ</label>
+            @Html.RadioButton("all", 2, new { @id = "all" })<label>全て</label>
+        </div>
+        <div class="col-md-10">  
+            @Html.TextBox("keyword", null, new { @id = "keyword", @class = "form-control input-sm" } )
+            <button type="button" id="search" class="btn">検索</button>
+            <button type="button" id="clear" class="btn">クリア</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-12">
+        <div id="table"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-12">
+        <button type="button" id="new" class="btn">新規登録</button>
+    </div>
+</div>
+
+<!-- modal dialog -->
+<div class="modal fade" id="modalDialog" tabindex="-1">
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        function getDisplayNames() {
+            var displayNames = {};
+            displayNames["id"] = "@Html.DisplayNameFor(model => model.Id)";
+            displayNames["name"] = "@Html.DisplayNameFor(model => model.Name)";
+            displayNames["remarks"] = "@Html.DisplayNameFor(model => model.Remarks)";
+            displayNames["order"] = "@Html.DisplayNameFor(model => model.Order)";
+            displayNames["isDeleted"] = "@Html.DisplayNameFor(model => model.IsDeleted)";
+            displayNames["createdAt"] = "@Html.DisplayNameFor(model => model.CreatedAt)";
+            displayNames["updatedAt"] = "@Html.DisplayNameFor(model => model.UpdatedAt)";
+            displayNames["rowVersion"] = "@Html.DisplayNameFor(model => model.RowVersion)";
+
+            return displayNames;
+        };
+
+        function getAjaxAntiForgeryToken() {
+            return "@Html.AjaxAntiForgeryToken()";
+        };
+    </script>
+
+    @Scripts.Render("~/bundles/views/Members/index")
+}

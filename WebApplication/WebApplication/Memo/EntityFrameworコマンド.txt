@@ -1,0 +1,14 @@
+﻿
+EntityFrameworコマンド
+
+・初回のみ
+
+PM> Enable-Migrations
+
+
+・Modelの変更時
+
+PM> Add-Migration Initial
+
+PM> Update-Database
+

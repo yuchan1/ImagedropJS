@@ -1,0 +1,191 @@
+﻿@using WebApplication.Helpers
+@model WebApplication.Models.FileUpload
+
+@{
+    ViewBag.Title = "FileUpload";
+}
+
+<!-- main -->
+<nav>
+    <ol class="breadcrumb">
+        <li><a href="/">HOME</a></li>
+        <li>@ViewBag.Title</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col col-md-6">
+        @using (Html.BeginForm("Upload", "FileUploads", FormMethod.Post, new { @class = "imagedrop", @id = "imagedrop", enctype = "multipart/form-data" })) {
+            @Html.AntiForgeryToken()        
+            @Html.Editor("testId", new { htmlAttributes = new { @id = "testId", name = "testId", style = "display: none" } })
+        }
+    </div>
+    <div class="col col-md-6">
+        @using (Ajax.BeginForm("Action", "FileUploads", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "modal-dialog", OnSuccess = "onSuccess", OnFailure = "onFailure" }, new { @id = "form0", name = "form0" })) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.FileName)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Remarks, new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control-textarea-width70" })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Remarks)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        @Html.HiddenFor(model => model.Order)
+                        @Html.HiddenFor(model => model.IsDeleted)
+                        @Html.HiddenFor(model => model.CreatedAt)
+                        @Html.HiddenFor(model => model.UpdatedAt)
+                        @Html.HiddenFor(model => model.RowVersion)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <div class="modal-footer">
+                            <input type="submit" id="modalSubmit" value="登録" class="btn btn-primary" disabled />
+                            <button type="button" class="btn" id="delete" disabled>削除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var imagedrop = null;
+        var testId = 1;
+
+        (function index() {
+            var createUrl = "/FileUploads/Create";
+            var editUrl = "/FileUploads/Edit";
+            var imageDirectory = "/Content/images/" + testId + "/FileUploads";
+
+            $("#testId").val(testId);
+
+            imagedrop = new Imagedrop();
+            var fileName = $("#FileName").val();
+            var filePath = imageDirectory + "/" + fileName;
+            imagedrop.setImage(filePath);
+
+            // フォームの切替
+            var id = Number($("#Id").val());
+            if (id == 0) {
+                $("#form0").attr("action", createUrl);
+                $("#submit").attr("value", "登録");
+            } else {
+                $("#form0").attr("action", editUrl);
+                $("#submit").attr("value", "更新");
+            }
+
+            calculateHeight();
+        })();
+
+        // Delete button
+        $("#delete").click(function () {
+            var deleteUrl = "/FileUploads/Delete";
+
+            var id = Number($("#Id").val());
+
+            if (confirm("削除してもよろしいですか？")) {
+                $.ajax({
+                    type: "POST",
+                    url: deleteUrl,
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                    dataType: "json",
+                    headers: { __RequestVerificationToken: getAjaxAntiForgeryToken() },
+                    data: { id: id },
+                }).then(function () {
+                    onSuccess();
+                }, function (response) {
+                    onFailuer(response);
+                });
+            }
+        });
+
+        // "#form0" before submit
+        $("#form0").submit(function () {
+            var fileName = imagedrop.getFileName();
+            $("#FileName").val(fileName);
+
+
+
+        });
+
+        // After submit
+        function onSuccess() {
+            var getUrl = "/FileUploads/Get";
+            var createUrl = "/FileUploads/Create";
+            var editUrl = "/FileUploads/Edit";
+            var imageDirectory = "/Content/images/" + testId + "/FileUploads";
+
+            $.getJSON(getUrl, null, function (response) {
+                $("#Id").val(response.Id);
+                $("#FileName").val(response.FileName);
+                $("#Order").val(response.Order);
+                $("#IsDeleted").val(response.IsDeleted);
+                $("#CreatedAt").val(moment(response.CreatedAt).format("YYYY-MM-DD HH:mm:ss"));
+                $("#UpdatedAt").val(moment(response.UpdatedAt).format("YYYY-MM-DD HH:mm:ss"));
+                $("#RowVersion").val(getRowVersion(response.RowVersion));
+
+                var fileName = $("#FileName").val();
+                var filePath = imageDirectory + "/" + fileName;
+                imagedrop.setImage(filePath);
+
+                // フォームの切替
+                var id = Number($("#Id").val());
+                if (id == 0) {
+                    $("#form0").attr("action", createUrl);
+                    $("#submit").attr("value", "登録");
+                } else {
+                    $("#form0").attr("action", editUrl);
+                    $("#submit").attr("value", "更新");
+                }
+
+                calculateHeight();
+
+                console.log("success");
+            });
+        }
+
+        function onFailure(response) {
+            var message = JSON.parse(response.responseText).Message;
+            console.log("failure : " + message);
+            alert(message);
+        }
+
+        // Get calculate height
+        function calculateHeight() {
+            var windowHeight = $(window).height();
+            var headerHeight = $(".imagedrop").offset().top;
+            var footerHeight = $("footer").height();
+            var height = windowHeight - headerHeight - footerHeight - 80;
+
+            imagedrop.setHeight(height);
+        };
+
+        $(window).on("resize", function () {
+            calculateHeight();
+        });
+
+        // getRowVersion
+        // Grid row RowVersion array [0,0,0,0,0,0,0,0,?] → "AAAAAAAAxA1="
+        function getRowVersion(rowVersionArray) {
+            var rowVersion = window.btoa(String.fromCharCode.apply(null, rowVersionArray));
+            return rowVersion;
+        }
+    </script>
+}

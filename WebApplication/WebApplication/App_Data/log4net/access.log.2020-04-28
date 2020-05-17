@@ -1,0 +1,4 @@
+2020-04-28 06:49:32,826 [7] INFO  WebApplication.Common.WriteLog [(null)] - http://localhost:61694/FileUploads/Index ::1 access
+2020-04-28 06:49:41,391 [8] INFO  WebApplication.Common.WriteLog [(null)] - http://localhost:61694/FileUploads/Index ::1 access
+2020-04-28 06:50:17,838 [7] INFO  WebApplication.Common.WriteLog [(null)] - http://localhost:61694/FileUploads/Index ::1 access
+2020-04-28 06:50:59,775 [7] INFO  WebApplication.Common.WriteLog [(null)] - http://localhost:61694/FileUploads/Index ::1 access
