@@ -4,13 +4,13 @@ Imagedrop.js  v1.0.0 (2020-04-27)
 Copyright 2020 yuchan.  
 Licensed under the MIT license.  
   
-Description(日本語) : 
+Description(日本語) :  
 画像ファイルを「ドラッグアンドドロップ」または「ダブルクリックしてファイル選択」して、アップロードします。  
 Native javascript(ECMAScript 5th edition)で書いてます。jqueryは使用していません。  
-既存のドラッグアンドドロップをアップロードするjavascriptライブラリが使いにくかったので作成しました。
-動きとしてはシンプルに作成しています。
-
-Set html項のフォームを設置すると下記のテンプレートを自動生成します。
+既存のドラッグアンドドロップをアップロードするjavascriptライブラリが使いにくかったので作成しました。 
+動きとしてはシンプルに作成しています。  
+  
+Set html項のフォームを設置すると下記のテンプレートを自動生成します。  
 
     var template = "\n" +
         "<div class=\"drag-and-drop-area\" id=\"dragAndDropArea\">\n" +
@@ -23,8 +23,8 @@ Set html項のフォームを設置すると下記のテンプレートを自動
         "    <div class=\"preview-filename\" id=\"previewFileName\" style=\"display: none\"></div>\n" +
         "</div>\n";
 
-Description(English) :
-Image file 'drag and drop' or 'double click select' upload. Write native javascript(ECMAScript 5th edition).No jquery.   
+Description(English) :  
+Image file 'drag and drop' or 'double click select' upload. Write native javascript(ECMAScript 5th edition).No jquery.  
   
 Support browser : Internet Explorer 11, Google Chrome.  
   
@@ -38,9 +38,11 @@ Support browser : Internet Explorer 11, Google Chrome.
     @using (Html.BeginForm("Upload", "(Name)", FormMethod.Post, new { @class = "imagedrop", @id = "imagedrop", enctype = "multipart/form-data" })) {
         @Html.AntiForgeryToken()        
         <!-- Only when needed → -->@Html.Editor("testId", new { htmlAttributes = new { @id = "testId", name = "testId", style="display: none" } })
-        }
+    }
 
 ### Set javascript
+Write 3 row only.
+
     <script>
         var imagedrop = new Imagedrop();
         var filePath = "/Content/images/1/FileUploads/test.jpg"
@@ -48,5 +50,5 @@ Support browser : Internet Explorer 11, Google Chrome.
     </script>
     
 ### Server side
-Controller : Html post form data. { object[] files, long testId}
+Controller : Html post form data. { object[] files, long testId}  
 Return : Json result required. { filePath = "/Content/images/1/FileUploads/test.jpg" }
