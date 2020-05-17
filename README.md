@@ -9,6 +9,7 @@ Description(日本語) :
 Native javascript(ECMAScript 5th edition)で書いてます。jqueryは使用していません。  
 既存のドラッグアンドドロップをアップロードするjavascriptライブラリが使いにくかったので作成しました。  
 動きとしてはシンプルに作成しています。  
+
   
 Set html項のフォームを設置すると下記のテンプレートを自動生成します。  
 
