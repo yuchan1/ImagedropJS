@@ -11,7 +11,7 @@ Native javascript(ECMAScript 5th edition)で書いてます。jqueryは使用し
 動きとしてはシンプルに作成しています。  
 
   
-Set html項のフォームを設置すると下記のテンプレートを自動生成します。  
+Set html項のフォーム設置とImagedrop.jsから、下記のテンプレートを自動生成します。  
 
     var template = "\n" +
         "<div class=\"drag-and-drop-area\" id=\"dragAndDropArea\">\n" +
