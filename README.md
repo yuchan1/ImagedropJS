@@ -19,7 +19,7 @@ Support browser : Internet Explorer 11, Google Chrome.
 '
 
 ### Set html(ASP.NET MVC5)
-'html:index.cshtml
+'
 @using (Html.BeginForm("Upload", "(Name)", FormMethod.Post, new { @class = "imagedrop", @id = "imagedrop", enctype = "multipart/form-data" })) {
    @Html.AntiForgeryToken()        
    <!-- Only when needed → -->@Html.Editor("testId", new { htmlAttributes = new { @id = "testId", name = "testId", style="display: none" } })     
